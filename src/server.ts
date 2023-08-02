@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import {
+  deleteDbItemById,
   addDbItem,
   getAllDbItems,
   getDbItemById,
@@ -60,6 +61,13 @@ app.patch<{ id: string }>("/to-dos/:id", (req, res) => {
 
   updateDbItemById(patchId, patchData);
   res.status(200).json(patchData);
+});
+
+//delete /to-dos
+app.delete<{ id: string }>("/to-dos/:id", (req, res) => {
+  const patchId = parseInt(req.params.id);
+  deleteDbItemById(patchId);
+  res.status(200);
 });
 
 app.listen(PORT_NUMBER, () => {
