@@ -10,7 +10,6 @@ dotenv.config();
 
 const dbUrl = process.env.DATABASE_URL;
 
-console.log(dbUrl);
 if (!dbUrl) {
   throw new Error("Missing env variable DATABASE_URL");
 }
@@ -42,9 +41,9 @@ app.post("/to-dos", async (req, res) => {
     "INSERT INTO todos(title, creationdate, completed, duedate) VALUES($1, $2, $3, $4)";
   const values = [
     postData.title,
-    postData.creationDate,
+    postData.creationdate,
     postData.completed,
-    postData.dueDate,
+    postData.duedate,
   ];
 
   const result = await client.query(queryText, values);
